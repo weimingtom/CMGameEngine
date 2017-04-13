@@ -1,0 +1,13 @@
+﻿add_subdirectory(crypto)
+add_subdirectory(2d)
+add_subdirectory(3d)
+add_subdirectory(audio)
+#add_subdirectory(multithread)
+add_subdirectory(network)
+add_subdirectory(datatype)
+add_subdirectory(database)
+add_subdirectory(time)
+
+IF(UNIX)
+add_subdirectory(db/redis)
+ENDIF()
