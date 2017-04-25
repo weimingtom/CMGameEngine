@@ -4,8 +4,9 @@
 #include<hgl/type/DataType.h>
 #include<hgl/type/Color3f.h>
 #include<hgl/type/Color4f.h>
-#include<hgl/algorithm/VectorMath.h>
+#include<hgl/type/BaseString.h>
 #include<hgl/graph/VertexBufferType.h>
+#include<hgl/LogInfo.h>
 namespace hgl
 {
     namespace graph
@@ -127,7 +128,7 @@ namespace hgl
             void *Begin(int offset=0)
             {
                 if(access)
-                {
+                {                    
                     LOG_HINT(OS_TEXT("VertexBuffer::Begin() access!=0,offset:")+OSString(offset));
                     return(nullptr);
                 }
@@ -414,8 +415,8 @@ namespace hgl
 
             /**
             * 计算绑定盒
-            * @param corner 一个顶角的坐标
-            * @param lanegth 每条边的长
+            * @param min_vertex 最小值坐标
+            * @param max_vertex 最大值坐标
             */
             template<typename V>
             void GetBoundingBox(V &min_vertex,V &max_vertex)

@@ -20,7 +20,7 @@ namespace hgl
         * @param targetname 目标文件名
         * @return 文件是否复制成功
         */
-        bool FileCopy(const OSString &sourcename,const OSString &targetname)
+        bool FileCopy(const OSString &targetname,const OSString &sourcename)
         {
             return(::CopyFileW(sourcename,targetname,false));
         }
@@ -41,7 +41,7 @@ namespace hgl
         * @param targetname 目标文件名
         * @return 文件是否移动成功
         */
-        bool FileMove(const OSString &sourcename,const OSString &targetname)
+        bool FileMove(const OSString &targetname,const OSString &sourcename)
         {
             return(::MoveFileW(sourcename,targetname));
         }
@@ -52,7 +52,7 @@ namespace hgl
         * @param newname 新的文件名
         * @return 文件名是否修改成功
         */
-        bool FileRename(const OSString &oldname,const OSString &newname)
+        bool FileRename(const OSString &newname,const OSString &oldname)
         {
             return(::MoveFileW(oldname,newname));
         }
@@ -270,7 +270,9 @@ namespace hgl
             if (hFind == INVALID_HANDLE_VALUE)
                 return(-1);
 
+            FileInfo fi;
             EnumFileConfig *sub_efc=nullptr;
+            int sub_count;
 
             do
             {
@@ -282,29 +284,26 @@ namespace hgl
 
                 if(FindFileData.dwFileAttributes&FILE_ATTRIBUTE_DIRECTORY)
                 {
-                    if(config->proc_folder)
+                    if(!config->proc_folder)continue;
+                    
+                    if(config->sub_folder)
                     {
-                        if(config->sub_folder)
-                        {
-                            sub_efc=config->CreateSubConfig(config,FindFileData.cFileName);
+                        sub_efc=config->CreateSubConfig(config,FindFileData.cFileName);
 
-                            if(!sub_efc)
-                                continue;
+                        if(!sub_efc)
+                            continue;
 
-                            count+=EnumFile(sub_efc);
-                        }
+                        sub_count=EnumFile(sub_efc);
+                        if(sub_count>0)count+=sub_count;
                     }
-                    else
-                        continue;
                 }
                 else
                 {
                     if(!config->proc_file)continue;
+                    
+                    ++count;
                 }
 
-                count++;
-
-                FileInfo fi;
                 memset(&fi,0,sizeof(FileInfo));
 
                 strcpy(fi.name,HGL_MAX_PATH,FindFileData.cFileName);

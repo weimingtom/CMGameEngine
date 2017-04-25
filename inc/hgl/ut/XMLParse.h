@@ -33,9 +33,9 @@ namespace hgl
 
 	public:
 
-		virtual void StartElement(const char *,const char **)=0;
-		virtual void CharData(const char *,int){};
-		virtual void EndElement(const char *){};
+        virtual void StartElement(const char *element_name,const char **atts)=0;
+		virtual void CharData(const char *str,int str_length){};
+		virtual void EndElement(const char *element_name){};
 
 	public:
 
@@ -86,11 +86,38 @@ namespace hgl
 #define xml_parse_uint(name)		if(hgl::strcmp(flag,#name)==0)hgl::stou(info,name);else
 #define xml_parse_float(name)		if(hgl::strcmp(flag,#name)==0)hgl::stof(info,name);else
 #define xml_parse_bool(name)		if(hgl::strcmp(flag,#name)==0)hgl::stob(info,name);else
+#define xml_parse_hexstr(name)      if(hgl::strcmp(flag,#name)==0)hgl::ParseHexStr(name,info);else
 
 #define xml_parse_to_string_u8(name,value)   if(hgl::strcmp(flag,name)==0)value=info;else
 #define xml_parse_to_int(name,value)         if(hgl::strcmp(flag,name)==0)hgl::stoi(info,value);else
 #define xml_parse_to_uint(name,value)        if(hgl::strcmp(flag,name)==0)hgl::stou(info,value);else
 #define xml_parse_to_float(name,value)       if(hgl::strcmp(flag,name)==0)hgl::stof(info,value);else
 #define xml_parse_to_bool(name,value)        if(hgl::strcmp(flag,name)==0)hgl::stob(info,value);else
+
+/** 使用范例:
+
+    <root>
+        <role name="Bill" sex="true" age="18"/>
+        <role name="Lucy" sex="false" age="17"/>
+    </root>
+
+	void StartElement(const char *element_name,const char **atts) override
+    {
+        if(strcmp(element_name,"role")==0)
+        {
+            std::string name;
+            bool sex;
+            int age;
+
+            XML_START_PARSE(atts)
+
+                xml_parse_string_u8(name)
+                xml_parse_bool(sex)
+                xml_parse_int(age)
+
+            XML_END_PARSE
+        }
+    }
+*/
 }//namespace hgl
 #endif//HGL_XML_PARSE_INCLUDE
