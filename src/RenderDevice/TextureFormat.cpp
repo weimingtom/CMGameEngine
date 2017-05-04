@@ -34,6 +34,7 @@ namespace hgl
             {HGL_SF_UNCOMPRESSED,   "",             false,  0,  0,                                              0,              0                           ,0,0},
 
             {HGL_SF_R3_G3_B2,       "R3_G3_B2",     false,  0,  GL_R3_G3_B2,                                    GL_RGB,         GL_UNSIGNED_BYTE_3_3_2      ,1,1},
+            {HGL_SF_RGB565,         "RGB565",       false,  0,  GL_RGB565,                                      GL_RGB,         GL_UNSIGNED_SHORT_5_6_5     ,2,2},
             {HGL_SF_RGB5,           "RGB5",         false,  0,  GL_RGB5,                                        GL_RGB,         GL_UNSIGNED_SHORT_5_5_5_1   ,2,2},
 
             {HGL_SF_RGBA4,          "RGBA4",        false,  0,  GL_RGBA4,                                       GL_RGBA,        GL_UNSIGNED_SHORT_4_4_4_4   ,2,2},
@@ -45,11 +46,11 @@ namespace hgl
 
             {HGL_SF_DEPTH,          "",             false,  0,  0,                                              0,              0                           ,0,0},
 
-            {HGL_SF_DEPTH16,        "DEPTH16",        false,    0,    GL_DEPTH_COMPONENT16,                            GL_DEPTH,        GL_UNSIGNED_SHORT            ,2,2},
-            {HGL_SF_DEPTH24,        "DEPTH24",        false,    0,    GL_DEPTH_COMPONENT24,                            GL_DEPTH,        GL_UNSIGNED_BYTE            ,3,3},
-            {HGL_SF_DEPTH32,        "DEPTH32",        false,    0,    GL_DEPTH_COMPONENT32,                            GL_DEPTH,        GL_UNSIGNED_INT                ,4,4},
+            {HGL_SF_DEPTH16,        "DEPTH16",      false,  0,  GL_DEPTH_COMPONENT16,                           GL_DEPTH,       GL_UNSIGNED_SHORT           ,2,2},
+            {HGL_SF_DEPTH24,        "DEPTH24",      false,  0,  GL_DEPTH_COMPONENT24,                           GL_DEPTH,       GL_UNSIGNED_BYTE            ,3,3},
+            {HGL_SF_DEPTH32,        "DEPTH32",      false,  0,  GL_DEPTH_COMPONENT32,                           GL_DEPTH,       GL_UNSIGNED_INT             ,4,4},
 
-            {HGL_SF_DEPTH32F,        "DEPTH32F",        false,    0,    GL_DEPTH_COMPONENT32F,                            GL_DEPTH,        GL_FLOAT                    ,4,4},
+            {HGL_SF_DEPTH32F,       "DEPTH32F",     false,  0,  GL_DEPTH_COMPONENT32F,                          GL_DEPTH,       GL_FLOAT                    ,4,4},
 
             {HGL_SF_INDEX,          "",             false,  0,  0,                                              0,              0                           ,0,0},
 
@@ -88,17 +89,17 @@ namespace hgl
             {HGL_SF_BPTC_RGBA,      "BPTC_RGBA",    true,   0,  GL_COMPRESSED_RGBA_BPTC_UNORM,                  GL_RGBA,        0,0,0},
             {HGL_SF_BPTC_SRGBA,     "BPTC_SRGBA",   true,   0,  GL_COMPRESSED_SRGB_ALPHA_BPTC_UNORM,            GL_SRGB_ALPHA,  0,0,0},
 
-            {HGL_SF_ETC2_RGB8,        "ETC2_RGB8",    true,    0,    GL_COMPRESSED_RGB8_ETC2,                        GL_RGB,         0,0,0},
-            {HGL_SF_ETC2_SRGB8,     "ETC2_SRGB8",    true,    0,    GL_COMPRESSED_SRGB8_ETC2,                        GL_SRGB,        0,0,0},
-            {HGL_SF_ETC2_RGB8A1,    "ETC2_RGB8A1",    true,    0,    GL_COMPRESSED_RGB8_PUNCHTHROUGH_ALPHA1_ETC2,    GL_RGBA,        0,0,0},
-            {HGL_SF_ETC2_SRGB8A1,   "ETC2_SRGB8A1",    true,    0,    GL_COMPRESSED_SRGB8_PUNCHTHROUGH_ALPHA1_ETC2,    GL_SRGB_ALPHA,  0,0,0},
-            {HGL_SF_ETC2_RGBA8,     "ETC2_RGBA8",    true,    0,    GL_COMPRESSED_RGBA8_ETC2_EAC,                    GL_RGBA,        0,0,0},
-            {HGL_SF_ETC2_SRGBA8,    "ETC2_SRGBA8",    true,    0,    GL_COMPRESSED_SRGB8_ALPHA8_ETC2_EAC,            GL_SRGB_ALPHA,    0,0,0},
+            {HGL_SF_ETC2_RGB8,      "ETC2_RGB8",    true,   0,  GL_COMPRESSED_RGB8_ETC2,                        GL_RGB,         0,0,0},
+            {HGL_SF_ETC2_SRGB8,     "ETC2_SRGB8",   true,   0,  GL_COMPRESSED_SRGB8_ETC2,                       GL_SRGB,        0,0,0},
+            {HGL_SF_ETC2_RGB8A1,    "ETC2_RGB8A1",  true,   0,  GL_COMPRESSED_RGB8_PUNCHTHROUGH_ALPHA1_ETC2,    GL_RGBA,        0,0,0},
+            {HGL_SF_ETC2_SRGB8A1,   "ETC2_SRGB8A1", true,   0,  GL_COMPRESSED_SRGB8_PUNCHTHROUGH_ALPHA1_ETC2,   GL_SRGB_ALPHA,  0,0,0},
+            {HGL_SF_ETC2_RGBA8,     "ETC2_RGBA8",   true,   0,  GL_COMPRESSED_RGBA8_ETC2_EAC,                   GL_RGBA,        0,0,0},
+            {HGL_SF_ETC2_SRGBA8,    "ETC2_SRGBA8",  true,   0,  GL_COMPRESSED_SRGB8_ALPHA8_ETC2_EAC,            GL_SRGB_ALPHA,  0,0,0},
 
-            {HGL_SF_EAC_R11,        "EAC_R11",        true,    0,    GL_COMPRESSED_R11_EAC,                            GL_RED,         0,0,0},
-            {HGL_SF_EAC_R11s,       "EAC_R11s",        true,    0,    GL_COMPRESSED_SIGNED_R11_EAC,                    GL_RED,         0,0,0},
-            {HGL_SF_EAC_RG11,       "EAC_RG11",        true,    0,    GL_COMPRESSED_RG11_EAC,                            GL_RG,             0,0,0},
-            {HGL_SF_EAC_RG11s,      "EAC_RG11s",    true,    0,    GL_COMPRESSED_SIGNED_RG11_EAC,                    GL_RG,             0,0,0}
+            {HGL_SF_EAC_R11,        "EAC_R11",      true,   0,  GL_COMPRESSED_R11_EAC,                          GL_RED,         0,0,0},
+            {HGL_SF_EAC_R11s,       "EAC_R11s",     true,   0,  GL_COMPRESSED_SIGNED_R11_EAC,                   GL_RED,         0,0,0},
+            {HGL_SF_EAC_RG11,       "EAC_RG11",     true,   0,  GL_COMPRESSED_RG11_EAC,                         GL_RG,          0,0,0},
+            {HGL_SF_EAC_RG11s,      "EAC_RG11s",    true,   0,  GL_COMPRESSED_SIGNED_RG11_EAC,                  GL_RG,          0,0,0}
         };//const TextureFormat TextureFormatInfoList[]
 
         const int TextureFormatCount=sizeof(TextureFormatInfoList)/sizeof(TextureFormat);
