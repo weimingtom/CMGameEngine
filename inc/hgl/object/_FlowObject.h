@@ -1,7 +1,7 @@
 ﻿#ifndef HGL__FLOW_OBJECT_INCLUDE
 #define HGL__FLOW_OBJECT_INCLUDE
 
-#include<hgl/platform/Platform.h>
+#include<hgl/type/DataType.h>
 #include<hgl/object/FlowObjectState.h>
 namespace hgl
 {
@@ -15,12 +15,12 @@ namespace hgl
         T *NextObject;                                                                              ///<下一个对象
 
         FlowObjectState fos;                                                                        ///<当前对象状态
-
+        
     public:  //事件
 
         virtual void OnToBack(){}                                                                   ///<将当前流程切入后台
         virtual void OnResume(){}                                                                   ///<将当前流恢复到前台
-        virtual void OnDestroy(){/*重载此处理本对象销毁事件*/}                                          ///<当前对象销毁事件
+        virtual void OnDestroy(){/*重载此处理本对象销毁事件*/}                                         ///<当前对象销毁事件
 
 	public: //方法
 
